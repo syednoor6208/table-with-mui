@@ -1,14 +1,15 @@
+import React from 'react';
 interface IPath {
   label: string;
   path: string;
 }
 export interface IColumns extends IPath {
-  styles?: IGeneric<object>;
+  styles?: IGeneric<Object>;
   hide?: boolean;
-  expandablePath?: IGeneric<IPath>;
+  
 }
 export type IGeneric<T> = {
-  [K in keyof T]: T | undefined;
+  [K in keyof T]: T[K];
 };
 
 export interface IData {
@@ -20,9 +21,18 @@ export interface IData {
   children?: Array<IData>;
 }
 
-export interface ITable {
-  columns: Array<IGeneric<IColumns>>;
-  expandable?: boolean;
-  data: Array<IGeneric<IData>>;
+interface IGeneral{
+  expandable?: ((row:IGeneric<Object>,columns:IColumns[]) => React.ReactElement | null ) | boolean;
+    columns: IColumns[];
+}
+
+export interface IPrintRow extends IGeneral{
+   row:IGeneric<Object>;
+  
+
+
+}
+export interface ITable extends IGeneral {
+  data: Array<IGeneric<Object>>;
   uniqueKey?: string;
 }

@@ -78,8 +78,8 @@ export default function App() {
   }, []);
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableContainer component={Paper} sx={{ maxHeight: 300 }}>
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHeaders columns={tableColumns} expandable={true} />
           <TableBodyContainer
             uniqueKey="name"

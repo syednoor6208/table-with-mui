@@ -50,7 +50,7 @@ const PrintRows: FC<_PrintRow> = ({
           </TableCellStyled>
         ) : null}
         {typeof expandable === "function" && fromExpand
-          ? expandable(row, columns)
+          ? expandable(row as IGeneric<Object>, columns)
           : columns.map((column: IGeneric<IColumns>) => {
               if (column.hide) return null;
               return (
